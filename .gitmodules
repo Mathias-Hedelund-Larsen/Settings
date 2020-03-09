@@ -1,0 +1,3 @@
+[submodule "GitSubmodules/BuildFilesManipulation"]
+	path = GitSubmodules/BuildFilesManipulation
+	url = https://github.com/Mathias-Hedelund-Larsen/BuildFilesManipulation.git
