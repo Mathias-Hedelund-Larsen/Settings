@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace FoldergeistAssets
+﻿namespace FoldergeistAssets
 {
     namespace SettingsManagement
     {
@@ -10,10 +8,10 @@ namespace FoldergeistAssets
         [System.Serializable]
         public class SettingsData
         {
+            public float _MasterVol;
+            public float _MusicVol;
+            public float _SFXVol;
             public Languages _Language = Languages.English;
-
-            [SerializeField, HideInInspector]
-            private string[] _availableLanguages;
         }
     }
 }

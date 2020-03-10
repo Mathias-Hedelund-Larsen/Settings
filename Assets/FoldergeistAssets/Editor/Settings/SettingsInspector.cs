@@ -62,6 +62,8 @@ namespace FoldergeistAssets
                 EditorGUI.BeginChangeCheck();
 
                 var settings = _target.FindProperty("_settings");
+
+                EditorGUILayout.PropertyField(_target.FindProperty("_gameMixer"));
                 EditorGUILayout.PropertyField(settings, true);
 
                 var defaultSettings = _target.FindProperty("_textSettings");

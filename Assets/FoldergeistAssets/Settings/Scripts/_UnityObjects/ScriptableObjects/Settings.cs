@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Audio;
 
 namespace FoldergeistAssets
 {
@@ -18,12 +19,15 @@ namespace FoldergeistAssets
 
 #endif
 
+            [SerializeField]
+            private AudioMixer _gameMixer;
+
             //The active and chosen language
             [SerializeField]
             private SettingsData _settings = new SettingsData();
 
             [SerializeField]
-            private TextSettingsCollection[] _textSettings = new TextSettingsCollection[0];
+            private TextSettingsCollection[] _textSettings = new TextSettingsCollection[0];                        
 
 #pragma warning restore 0649
 
@@ -43,6 +47,52 @@ namespace FoldergeistAssets
                 _settings._Language = newLanguage;
 
                 _OnLanguageChange?.Invoke(oldLanguage, newLanguage);
+            }
+
+            public float GetMasterVolume()
+            {
+                return _settings._MasterVol;
+            }
+
+            /// <summary>
+            /// Accessed by a slider for setting Master Volume in the SettingsMenu
+            /// </summary>
+            /// <param name="volume"></param>
+            public void SetMasterVolume(float volume)
+            {
+                _settings._MasterVol = volume;
+                _gameMixer.SetFloat("MasterVol", Mathf.Log10(volume) * 20);
+            }
+
+
+            public float GetMusicVolume()
+            {
+                return _settings._MusicVol;
+            }
+
+            /// <summary>
+            /// Accessed by a slider for setting Music Volume in the SettingsMenu
+            /// </summary>
+            /// <param name="volume"></param>
+            public void SetMusicVolume(float volume)
+            {
+                _settings._MusicVol = volume;
+                _gameMixer.SetFloat("MusicVol", Mathf.Log10(volume) * 20);
+            }
+
+            public float GetSoundEffectsVolume()
+            {
+                return _settings._SFXVol;
+            }
+
+            /// <summary>
+            /// Accessed by a slider for setting Sound Effects Volume in the SettingsMenu
+            /// </summary>
+            /// <param name="volume"></param>
+            public void SetSoundEffectsVolume(float volume)
+            {
+                _settings._SFXVol = volume;
+                _gameMixer.SetFloat("SFXVol", Mathf.Log10(volume) * 20);
             }
 
 #if TMP_ENABLED
@@ -73,6 +123,7 @@ namespace FoldergeistAssets
                 return textSettings;
             }
 #else
+
             /// <summary>
             /// Getting the settings for a ui text by the index
             /// </summary>
