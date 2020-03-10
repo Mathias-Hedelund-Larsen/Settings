@@ -1,3 +1,6 @@
 [submodule "GitSubmodules/BuildFilesManipulation"]
 	path = GitSubmodules/BuildFilesManipulation
 	url = https://github.com/Mathias-Hedelund-Larsen/BuildFilesManipulation.git
+[submodule "GitSubmodules/Variables"]
+	path = GitSubmodules/Variables
+	url = https://github.com/Mathias-Hedelund-Larsen/Variables.git

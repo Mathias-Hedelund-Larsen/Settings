@@ -51,7 +51,7 @@ namespace FoldergeistAssets
 
             public float GetMasterVolume()
             {
-                return _settings._MasterVol;
+                return _settings._MasterVol.Value;
             }
 
             /// <summary>
@@ -60,7 +60,7 @@ namespace FoldergeistAssets
             /// <param name="volume"></param>
             public void SetMasterVolume(float volume)
             {
-                _settings._MasterVol = volume;
+                _settings._MasterVol.Value = volume;
                 _gameMixer.SetFloat("MasterVol", Mathf.Log10(volume) * 20);
             }
 
@@ -76,7 +76,7 @@ namespace FoldergeistAssets
             /// <param name="volume"></param>
             public void SetMusicVolume(float volume)
             {
-                _settings._MusicVol = volume;
+                _settings._MusicVol.Value = volume;
                 _gameMixer.SetFloat("MusicVol", Mathf.Log10(volume) * 20);
             }
 
@@ -91,7 +91,7 @@ namespace FoldergeistAssets
             /// <param name="volume"></param>
             public void SetSoundEffectsVolume(float volume)
             {
-                _settings._SFXVol = volume;
+                _settings._SFXVol.Value = volume;
                 _gameMixer.SetFloat("SFXVol", Mathf.Log10(volume) * 20);
             }
 

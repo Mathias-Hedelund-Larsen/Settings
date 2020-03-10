@@ -1,7 +1,8 @@
 {
     "name": "FoldergeistAsset-Settings",
     "references": [
-        "Unity.TextMeshPro"
+        "Unity.TextMeshPro",
+        "Variables"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],

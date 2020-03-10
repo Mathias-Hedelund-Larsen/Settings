@@ -8,9 +8,9 @@
         [System.Serializable]
         public class SettingsData
         {
-            public float _MasterVol;
-            public float _MusicVol;
-            public float _SFXVol;
+            public FloatReference _MasterVol;
+            public FloatReference _MusicVol;
+            public FloatReference _SFXVol;
             public Languages _Language = Languages.English;
         }
     }
