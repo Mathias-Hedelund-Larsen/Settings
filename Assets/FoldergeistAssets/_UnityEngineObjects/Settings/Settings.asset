@@ -15,9 +15,18 @@ MonoBehaviour:
   _onlyForInspectorTMPEnabled: 0
   _gameMixer: {fileID: 24100000, guid: a9cf3fe2af2854c4789bbd9e2fb3441d, type: 2}
   _settings:
-    _MasterVol: 0
-    _MusicVol: 0
-    _SFXVol: 0
+    _MasterVol:
+      _useConstant: 0
+      _constantValue: 0
+      _variabelValue: {fileID: 11400000, guid: 6423453580ac4604490b298315ce0527, type: 2}
+    _MusicVol:
+      _useConstant: 0
+      _constantValue: 0
+      _variabelValue: {fileID: 11400000, guid: 01bbbf25c44cfb140a5bd7a67b400c23, type: 2}
+    _SFXVol:
+      _useConstant: 0
+      _constantValue: 0
+      _variabelValue: {fileID: 11400000, guid: 5e72b8aa796b41b438e71642e2fedcca, type: 2}
     _Language: 1
   _textSettings:
   - _CollectionName: MainMenuButtonText

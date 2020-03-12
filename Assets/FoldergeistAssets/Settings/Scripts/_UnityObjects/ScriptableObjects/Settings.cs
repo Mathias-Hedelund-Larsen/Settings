@@ -37,6 +37,45 @@ namespace FoldergeistAssets
             //Exposing the active language
             public Languages ActiveLanguage { get { return _settings._Language; } }
 
+            public float MasterVolume
+            {
+                get
+                {
+                    return _settings._MasterVol; 
+                }
+                private set
+                {
+                    _settings._MasterVol.Value = value;
+                    _gameMixer.SetFloat("MasterVol", Mathf.Log10(value) * 20);
+                }
+            }
+
+            public float MusicVolume
+            {
+                get
+                {
+                    return _settings._MusicVol;
+                }
+                private set
+                {
+                    _settings._MusicVol.Value = value;
+                    _gameMixer.SetFloat("MusicVol", Mathf.Log10(value) * 20);
+                }
+            }
+
+            public float SoundEffectsVolume
+            {
+                get
+                {
+                    return _settings._SFXVol;
+                }
+                private set
+                {
+                    _settings._SFXVol.Value += value;
+                    _gameMixer.SetFloat("SFXVol", Mathf.Log10(value) * 20);
+                }
+            }
+
             /// <summary>
             /// Changing the current language to a new one, then invoking the event
             /// </summary>
@@ -47,53 +86,7 @@ namespace FoldergeistAssets
                 _settings._Language = newLanguage;
 
                 _OnLanguageChange?.Invoke(oldLanguage, newLanguage);
-            }
-
-            public float GetMasterVolume()
-            {
-                return _settings._MasterVol.Value;
-            }
-
-            /// <summary>
-            /// Accessed by a slider for setting Master Volume in the SettingsMenu
-            /// </summary>
-            /// <param name="volume"></param>
-            public void SetMasterVolume(float volume)
-            {
-                _settings._MasterVol.Value = volume;
-                _gameMixer.SetFloat("MasterVol", Mathf.Log10(volume) * 20);
-            }
-
-
-            public float GetMusicVolume()
-            {
-                return _settings._MusicVol;
-            }
-
-            /// <summary>
-            /// Accessed by a slider for setting Music Volume in the SettingsMenu
-            /// </summary>
-            /// <param name="volume"></param>
-            public void SetMusicVolume(float volume)
-            {
-                _settings._MusicVol.Value = volume;
-                _gameMixer.SetFloat("MusicVol", Mathf.Log10(volume) * 20);
-            }
-
-            public float GetSoundEffectsVolume()
-            {
-                return _settings._SFXVol;
-            }
-
-            /// <summary>
-            /// Accessed by a slider for setting Sound Effects Volume in the SettingsMenu
-            /// </summary>
-            /// <param name="volume"></param>
-            public void SetSoundEffectsVolume(float volume)
-            {
-                _settings._SFXVol.Value = volume;
-                _gameMixer.SetFloat("SFXVol", Mathf.Log10(volume) * 20);
-            }
+            }            
 
 #if TMP_ENABLED
             /// <summary>
@@ -154,7 +147,7 @@ namespace FoldergeistAssets
 
 #if UNITY_EDITOR
 
-            [UnityEditor.MenuItem("Assets/Create/FoldergeistAssets/Limited to one//Settings", false, 0)]
+            [UnityEditor.MenuItem("Assets/Create/FoldergeistAssets/Limited to one/Settings", false, 0)]
             private static void CreateInstance()
             {
                 if (UnityEditor.AssetDatabase.FindAssets("t:Settings").Length == 0)

@@ -4,3 +4,6 @@
 [submodule "GitSubmodules/Variables"]
 	path = GitSubmodules/Variables
 	url = https://github.com/Mathias-Hedelund-Larsen/Variables.git
+[submodule "GitSubmodules/EventMethodTargeting"]
+	path = GitSubmodules/EventMethodTargeting
+	url = https://github.com/Mathias-Hedelund-Larsen/EventMethodTargeting.git

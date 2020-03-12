@@ -10,12 +10,12 @@ namespace FoldergeistAssets
         {
 #pragma warning disable 0649
             [SerializeField]
-            private Settings _settings;
+            private ReadOnlyFloatReference _settingsVolume;
 #pragma warning restore 0649
 
             private void Awake()
             {
-                GetComponent<Slider>().value = _settings.GetMasterVolume();
+                GetComponent<Slider>().value = _settingsVolume;
             }
         }
     }
