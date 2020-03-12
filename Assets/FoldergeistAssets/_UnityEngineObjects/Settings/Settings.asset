@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _onlyForInspectorTMPEnabled: 0
   _gameMixer: {fileID: 24100000, guid: a9cf3fe2af2854c4789bbd9e2fb3441d, type: 2}
-  _settings:
+  _settingsData:
     _MasterVol:
       _useConstant: 0
       _constantValue: 0

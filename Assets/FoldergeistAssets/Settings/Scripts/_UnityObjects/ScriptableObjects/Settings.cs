@@ -24,7 +24,7 @@ namespace FoldergeistAssets
 
             //The active and chosen language
             [SerializeField]
-            private SettingsData _settings = new SettingsData();
+            private SettingsData _settingsData = new SettingsData();
 
             [SerializeField]
             private TextSettingsCollection[] _textSettings = new TextSettingsCollection[0];                        
@@ -35,17 +35,17 @@ namespace FoldergeistAssets
             public event OnLanguageChange _OnLanguageChange;
 
             //Exposing the active language
-            public Languages ActiveLanguage { get { return _settings._Language; } }
+            public Languages ActiveLanguage { get { return _settingsData._Language; } }
 
             public float MasterVolume
             {
                 get
                 {
-                    return _settings._MasterVol; 
+                    return _settingsData._MasterVol; 
                 }
                 private set
                 {
-                    _settings._MasterVol.Value = value;
+                    _settingsData._MasterVol.Value = value;
                     _gameMixer.SetFloat("MasterVol", Mathf.Log10(value) * 20);
                 }
             }
@@ -54,11 +54,11 @@ namespace FoldergeistAssets
             {
                 get
                 {
-                    return _settings._MusicVol;
+                    return _settingsData._MusicVol;
                 }
                 private set
                 {
-                    _settings._MusicVol.Value = value;
+                    _settingsData._MusicVol.Value = value;
                     _gameMixer.SetFloat("MusicVol", Mathf.Log10(value) * 20);
                 }
             }
@@ -67,13 +67,20 @@ namespace FoldergeistAssets
             {
                 get
                 {
-                    return _settings._SFXVol;
+                    return _settingsData._SFXVol;
                 }
                 private set
                 {
-                    _settings._SFXVol.Value += value;
+                    _settingsData._SFXVol.Value += value;
                     _gameMixer.SetFloat("SFXVol", Mathf.Log10(value) * 20);
                 }
+            }
+
+            private void Init()
+            {
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+                Debug.Log("Settings initializing");
+#endif
             }
 
             /// <summary>
@@ -82,8 +89,8 @@ namespace FoldergeistAssets
             /// <param name="newLanguage">Value of the new language</param>
             public void ChangeLanguage(Languages newLanguage)
             {
-                var oldLanguage = _settings._Language;
-                _settings._Language = newLanguage;
+                var oldLanguage = _settingsData._Language;
+                _settingsData._Language = newLanguage;
 
                 _OnLanguageChange?.Invoke(oldLanguage, newLanguage);
             }            
@@ -128,7 +135,7 @@ namespace FoldergeistAssets
 
                 for (int i = 0; i < _textSettings[index]._LanguageTextSettings.Length; i++)
                 {
-                    if (_textSettings[index]._LanguageTextSettings[i]._Language == _settings._Language)
+                    if (_textSettings[index]._LanguageTextSettings[i]._Language == _settingsData._Language)
                     {
                         return _textSettings[index]._LanguageTextSettings[i];
                     }
@@ -137,7 +144,7 @@ namespace FoldergeistAssets
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
                 if (!succes)
                 {
-                    Debug.LogError("Couldn't find the needed text settings for language: " + _settings._Language);
+                    Debug.LogError("Couldn't find the needed text settings for language: " + _settingsData._Language);
                 }
 #endif
 
