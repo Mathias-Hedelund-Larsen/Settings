@@ -8,9 +8,12 @@
         [System.Serializable]
         public class SettingsData
         {
-            public FloatReference _MasterVol;
+            public BooleanReference _FullScreen;
             public FloatReference _MusicVol;
+            public FloatReference _MasterVol;
             public FloatReference _SFXVol;
+            public SimpleResolutionReference _Resolution;
+            public QualitySettingValuesReference _QualitySettings;
             public Languages _Language = Languages.English;
         }
     }

@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using System.IO;
+using System.Linq;
+using System.Text;
+using UnityEngine;
 using UnityEngine.Audio;
 
 namespace FoldergeistAssets
@@ -31,11 +35,29 @@ namespace FoldergeistAssets
 
 #pragma warning restore 0649
 
+            [NonSerialized]
+            private string _settingsPath;
+
             //Event that will be invoked when the chosen language change
             public event OnLanguageChange _OnLanguageChange;
 
             //Exposing the active language
             public Languages ActiveLanguage { get { return _settingsData._Language; } }
+
+            #region SettingsData
+
+            public bool FullScreen
+            {
+                get
+                {
+                    return _settingsData._FullScreen;
+                }
+                set
+                {
+                    Screen.fullScreen = value;
+                    _settingsData._FullScreen.Value = value;
+                }
+            }
 
             public float MasterVolume
             {
@@ -76,11 +98,52 @@ namespace FoldergeistAssets
                 }
             }
 
+            #endregion
             private void Init()
             {
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
-                Debug.Log("Settings initializing");
+#if UNITY_EDITOR
+                if (!File.Exists($"{Application.persistentDataPath}/InitialSettings.txt"))
+                {
+                    using (Stream stream = File.Open($"{Application.persistentDataPath}/InitialSettings.txt", FileMode.Create))
+                    {
+                        using (BinaryWriter writer = new BinaryWriter(stream, Encoding.UTF8))
+                        {
+                            var settingsPacket = new Packet();
+                            _settingsData._Resolution.Value = (SimpleResolution)Screen.currentResolution;
+                            settingsPacket.Write(_settingsData);
+
+                            writer.Write(settingsPacket.ToArray());
+                        }
+                    }                    
+                }
 #endif
+                _settingsPath = $"{Application.persistentDataPath}/Settings.txt";
+
+                if (!File.Exists(_settingsPath))
+                {
+                    using (Stream stream = File.Open(_settingsPath, FileMode.Create))
+                    {
+                        using (BinaryWriter writer = new BinaryWriter(stream, Encoding.UTF8))
+                        {
+                            var settingsPacket = new Packet();
+                            _settingsData._Resolution.Value = (SimpleResolution)Screen.currentResolution;
+                            settingsPacket.Write(_settingsData);
+
+                            writer.Write(settingsPacket.ToArray());
+                        }
+                    }
+                }
+                else
+                {
+                    LoadSettings();
+                }
+            }
+
+            private void LoadSettings()
+            {
+                var settingsData = new Packet(File.ReadAllBytes(_settingsPath)).ReadSettingsData();
+
+
             }
 
             /// <summary>
@@ -163,9 +226,24 @@ namespace FoldergeistAssets
 
                     if (path.Length > 0)
                     {
-                        if (System.IO.Directory.Exists(path))
+                        var obj = CreateInstance<Settings>();                       
+
+                        if (Directory.Exists(path))
                         {
-                            UnityEditor.AssetDatabase.CreateAsset(CreateInstance<Settings>(), path + "/Settings.asset");
+                            UnityEditor.AssetDatabase.CreateAsset(obj, path + "/Settings.asset");
+
+                            return;
+                        }
+
+                        var pathSplit = path.Split('/').ToList();
+                        pathSplit.RemoveAt(pathSplit.Count - 1);
+                        path = string.Join("/", pathSplit);
+
+                        if (Directory.Exists(path))
+                        {                            
+                            UnityEditor.AssetDatabase.CreateAsset(obj, path + "/Settings.asset");
+
+                            return;
                         }
                     }
                 }
@@ -173,6 +251,18 @@ namespace FoldergeistAssets
                 {
                     Debug.LogWarning("An instance of Settings already exists");
                 }
+            }
+
+            private void ResetSettingsData()
+            {
+                var initialSettings = new Packet(File.ReadAllBytes($"{Application.persistentDataPath}/InitialSettings")).ReadSettingsData();
+                FullScreen = initialSettings._FullScreen;
+                MasterVolume = initialSettings._MasterVol;
+                MusicVolume = initialSettings._MusicVol;
+                SoundEffectsVolume = initialSettings._SFXVol;
+                _settingsData._Resolution.Value = initialSettings._Resolution.Value;
+                _settingsData._QualitySettings.Value = initialSettings._QualitySettings.Value;
+                _settingsData._Language = initialSettings._Language;
             }
 #endif
         }

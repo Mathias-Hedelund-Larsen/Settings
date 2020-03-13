@@ -2,7 +2,8 @@
     "name": "FoldergeistAsset-Settings",
     "references": [
         "Unity.TextMeshPro",
-        "Variables"
+        "Variables",
+        "FoldergeistAssets-UnityEventMethodTargeting"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],

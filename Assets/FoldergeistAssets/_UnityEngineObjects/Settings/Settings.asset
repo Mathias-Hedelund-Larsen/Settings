@@ -15,43 +15,33 @@ MonoBehaviour:
   _onlyForInspectorTMPEnabled: 0
   _gameMixer: {fileID: 24100000, guid: a9cf3fe2af2854c4789bbd9e2fb3441d, type: 2}
   _settingsData:
-    _MasterVol:
+    _FullScreen:
       _useConstant: 0
       _constantValue: 0
-      _variabelValue: {fileID: 11400000, guid: 6423453580ac4604490b298315ce0527, type: 2}
+      _variabelValue: {fileID: 11400000, guid: 5a1c583eddc4fa047a09c779b8b2a685, type: 2}
     _MusicVol:
       _useConstant: 0
       _constantValue: 0
       _variabelValue: {fileID: 11400000, guid: 01bbbf25c44cfb140a5bd7a67b400c23, type: 2}
+    _MasterVol:
+      _useConstant: 0
+      _constantValue: 0
+      _variabelValue: {fileID: 11400000, guid: 6423453580ac4604490b298315ce0527, type: 2}
     _SFXVol:
       _useConstant: 0
       _constantValue: 0
       _variabelValue: {fileID: 11400000, guid: 5e72b8aa796b41b438e71642e2fedcca, type: 2}
+    _Resolution:
+      _useConstant: 0
+      _constantValue:
+        _Width: 0
+        _Height: 0
+      _variabelValue: {fileID: 11400000, guid: 35868c8c285c87f42868708da3878ae3, type: 2}
+    _QualitySettings:
+      _useConstant: 0
+      _constantValue: 0
+      _variabelValue: {fileID: 11400000, guid: cb0a20edffb1d6241af60541a8e88283, type: 2}
     _Language: 1
   _textSettings:
-  - _CollectionName: MainMenuButtonText
-    _LanguageTextSettings:
-    - _Language: 2
-      _TextFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-      _FontStyle: 0
-      _FontSize: 15
-      _LineSpacing: 1
-      _SupportRichText: 1
-      _TextAnchor: 4
-      _AlignByGeometry: 0
-      _Horizontal: 0
-      _Vertical: 0
-      _Color: {r: 0, g: 0, b: 0, a: 1}
-  - _CollectionName: Header
-    _LanguageTextSettings:
-    - _Language: 2
-      _TextFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-      _FontStyle: 0
-      _FontSize: 24
-      _LineSpacing: 1
-      _SupportRichText: 1
-      _TextAnchor: 4
-      _AlignByGeometry: 0
-      _Horizontal: 1
-      _Vertical: 1
-      _Color: {r: 0.9716981, g: 0.42807224, b: 0, a: 1}
+  - _CollectionName: 
+    _LanguageTextSettings: []
