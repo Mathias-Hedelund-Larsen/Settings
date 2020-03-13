@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/FoldergeistAssets/_Scenes/Settings.unity
+    path: Assets/HephaestusForge/_Scenes/Settings.unity
     guid: 23a8aedd67ba14d4dbcea0dfad05f8f9
   m_configObjects: {}

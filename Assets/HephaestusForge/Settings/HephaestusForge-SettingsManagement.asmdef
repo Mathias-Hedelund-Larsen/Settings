@@ -1,0 +1,16 @@
+{
+    "name": "HephaestusForge-SettingsManagement",
+    "references": [
+        "Unity.TextMeshPro",
+        "HephaestusForge-UnityEventMethodTargeting",
+        "HephaestusForge-Variables"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}
