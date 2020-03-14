@@ -23,7 +23,7 @@ namespace HephaestusForge
             /// Called by unity when the settinga manager object is inspected, here the initial references are made
             /// </summary>
             private void OnEnable()
-            {
+            {                
                 _target = new SerializedObject(target);
                 _monoScript = MonoScript.FromScriptableObject((Settings)target);
             }
@@ -51,7 +51,7 @@ namespace HephaestusForge
                 {
                     if (enabled.boolValue)
                     {
-                        PlayerSettings.SetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup, $"{defines};{TMP_ENABLED}");
+                        PlayerSettings.SetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup, $"{defines};{TMP_ENABLED}");                        
                     }
                     else
                     {

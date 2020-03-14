@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JetBrains.Annotations;
+using System;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -138,6 +139,9 @@ namespace HephaestusForge
             }
             #endregion
 
+            /// <summary>
+            /// Called by a unity event in the MainMenu scene, and also called by InitializeSettings in the editor
+            /// </summary>
             private void Init()
             {
 #if UNITY_EDITOR
@@ -322,6 +326,9 @@ namespace HephaestusForge
                 }
             }
 
+            /// <summary>
+            /// Called by InitializeSettings in the editor.
+            /// </summary>
             private void ResetSettingsData()
             {
                 var editorSettings = new Packet(File.ReadAllBytes($"{Application.persistentDataPath}/EditorSettings.txt")).ReadSettingsData();
